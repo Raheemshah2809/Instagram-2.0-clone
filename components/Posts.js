@@ -12,9 +12,9 @@ function Posts() {
         useEffect (
             () =>
             onSnapshot(
-                query(collection(db, "posts"),orderBy("timestamp", "desc")),
+                query(
+                    collection(db, "posts"),orderBy("timestamp", "desc")),
                 (snapshot) => {
-                    console.log(snapshot.docs);
                     setPosts(snapshot.docs);
                 }
             ),

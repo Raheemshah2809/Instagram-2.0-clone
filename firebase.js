@@ -14,8 +14,8 @@ const firebaseConfig = {
   projectId: "instagram-project-18741",
   storageBucket: "instagram-project-18741.appspot.com",
   messagingSenderId: "1058752459296",
-  appId: "1:1058752459296:web:bfbdffc2a26cd7ac524245",
-  measurementId: "G-QXG4HQ05V9"
+  appId: "1:1058752459296:web:23f81a8ce942d9cd524245",
+  measurementId: "G-M7CX6Z75PK"
 };
 
 

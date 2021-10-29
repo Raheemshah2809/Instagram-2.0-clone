@@ -1,5 +1,5 @@
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from "@firebase/firestore";
-import { async } from "@firebase/util";
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, collectionGroup, getDocs} from "@firebase/firestore";
+
 import {
     SearchIcon,
     PlusCircleIcon,
@@ -18,29 +18,31 @@ import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 
+
 function Post({ id, username, userImg, img, caption }) {
-    const { data:session } = useSession();
+    const {data: session } = useSession();
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     
-
-    useEffect (
-        () =>
-        onSnapshot(
-            query(collection(db, "posts", id, "comments"),orderBy("timestamp", "desc")),
-            (snapshot) => {
-                console.log(snapshot.docs);
-                setComments(snapshot.docs);
-            }
-        ),
-        [db]
-    );
-
+    // useEffect(async () => {
+    //     const allPosts = collectionGroup(db, "posts", id, "comments")
+    //     const collection_query = query(allPosts, orderBy("timestamp", "desc"));
+    //     // setComments(collection.docs)
+    //     console.log(allPosts);
+    // }, []);
+    
+    useEffect(() => {
+        db.collection("posts")
+          .orderBy("text", "asc")
+          .onSnapshot((snapshot) =>
+            setPosts(snapshot.docs.map((doc) => doc.data()))
+          );
+      }, []);
     const sendComment = async (e) => {
         e.preventDefault();
 
         const commentToSend = comment; 
-        setComment('');
+        setComment("");
 
         await addDoc(collection(db, 'posts', id, 'comments'), {
         comment: commentToSend,
@@ -51,7 +53,6 @@ function Post({ id, username, userImg, img, caption }) {
 
 };
 
-    
     return (
         <div className="bg-white my-7 border-rounded-sm">
             <div className="flex items-center p-5">
