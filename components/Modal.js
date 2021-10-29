@@ -36,7 +36,7 @@ function Modal() {
         (async (snapshot) => {
             const downloadURL = await getDownloadURL(imageRef); 
             await updateDoc(doc(db, 'posts', docRef.id), {
-                image: downloadURL,ç
+                image: downloadURL,
             })
         });
 
@@ -110,7 +110,7 @@ function Modal() {
                                         />
                                     </div>
 
-                                        )};
+                                        )}
                                         <div>
                                             <div
                                             className="mt-3 text-center sm:mt-5">
