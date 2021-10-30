@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps: {session, ...pageProps} }) {
       </RecoilRoot>
     </SessionProvider>
   );
-  
+  // fix this later 
   
 }
 

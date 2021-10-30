@@ -36,6 +36,8 @@ function Posts() {
         </div>
 
     )
+    console.log(posts);
 }
+
 
 export default Posts;
