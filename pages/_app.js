@@ -1,4 +1,4 @@
-import "/Users/raheemshah/Documents/Github Projects/Instagram-2.0-clone/styles/globals.css";
+import "..//styles/globals.css";
 import {SessionProvider} from "next-auth/react";
 import { RecoilRoot } from "recoil";
 
