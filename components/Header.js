@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import Image from "next/image";
 import {
     SearchIcon,
@@ -5,79 +6,96 @@ import {
     UserGroupIcon,
     HeartIcon,
     PaperAirplaneIcon,
-    MenuIcon,
+    ChatIcon,
 } from "@heroicons/react/outline";
-import {HomeIcon} from "@heroicons/react/solid";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/dist/client/router";
+import { HomeIcon } from "@heroicons/react/solid";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useRecoilState } from "recoil";
 import { modalState } from "../atoms/modalAtom";
-import {open} from "../components/Modal"
 
-function Header() {
-    const {data: session} = useSession();
+const Header = () => {
+    const { data: session } = useSession();
     const [open, setOpen] = useRecoilState(modalState);
     const router = useRouter();
     return (
-        <div className="shadow-sm border-b bg-white sticky top-0 z-50">
-            <div className="flex justify-between max-w-6xl mx-5 lg:mx-auto">
-                {/*left*/}
-
-                <div onClick={()=> router.push('/')} className="relative hidden lg:inline-grid w-24 cursor-pointer">
-                    <Image src="https://links.papareact.com/ocw" layout="fill" 
-                    objectFit="contain"/>
-
+        <header className="shadow-md border-b bg-white sticky top-0 z-50 px-2">
+            <div className="flex justify-between bg-white max-w-6xl mx-5 lg:mx-auto">
+                <div className="relative hidden lg:inline-grid w-24 cursor-pointer">
+                    <Image
+                        layout="fill"
+                        src="https://links.papareact.com/ocw"
+                        objectFit="contain"
+                        onClick={() => router.push("/")}
+                    />
                 </div>
-
-                <div  onClick={()=> router.push('/')} className="relative w-10 lg:hidden flex-shrink-0 cursor-pointer hover:scale-125 transition-all duration-150 ease-out">
-                    <Image 
-                    src="https://links.papareact.com/jjm"
-                    layout="fill"
-                    objectFit="contain"/>
+                <div className="relative w-10 lg:hidden flex-shrink-0 cursor-pointer">
+                    <Image
+                        layout="fill"
+                        src="https://links.papareact.com/jjm"
+                        objectFit="contain"
+                        onClick={() => router.push("/")}
+                    />
                 </div>
-
-                {/*Middle*/}
-                    <div className="max-w-xs">
-                <div className="relative mt-1 p-3 rounded-md">
-                    <div className="absolute inset-y-0 pl-3 flex items-center pointer-events-none ">
-                        <SearchIcon className="h-5 w-5 text-gray-500"/>
+                <div className="max-w-xs">
+                    <div className="relative mt-1 p-3 rounded-md">
+                        <div className="absolute inset-y-0 pl-3 flex items-center">
+                            <SearchIcon className="h-5 w-5 text-gray-500 cursor-pointer" />
+                        </div>
+                        <input
+                            className="bg-gray-50 block w-full pl-10 sm:text-sm border-gray-300 focus:ring-black focus:border-black rounded-md"
+                            type="text"
+                            placeholder="Search"
+                        />
                     </div>
-                        <input className="bg-gray-50 block w-full pl-10 sm:text-sm  focus:ring-black focus:border-black rounded-md" type="text" placeholder="Search"/>
                 </div>
-                    </div>
-
-                {/*Right*/}
                 <div className="flex items-center justify-end space-x-4">
-                <HomeIcon  onClick={()=> router.push('/')} className="navBtn"/>
-                <MenuIcon className="h-6 md:hidden cursor-pointer"/>
-                {session ? (
-                    <>
-                    <div className="relative navBtn">
-                    <PaperAirplaneIcon className="navBtn rotate-45"/>
-                    <div className="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white">
-                    89
-                    </div>
-                    </div>
-                    <PlusCircleIcon 
-                    onClick={() => setOpen (true)} 
-                    className="navBtn" />
-                    <UserGroupIcon className="navBtn"/>
-                    <HeartIcon className="navBtn"/>
-    
-                    <img 
-                    onClick={signOut}
-                    src={session?.user?.image} 
-                    alt= "the profile picture" className="h-10 rounded-full cursor-pointer hover:scale-125 transition-all duration-150 ease-out"/>
-                    </>
-                    
-                ):(
-                    <button onClick={signIn}>Sign In</button>
-                )}
-                
+                    <PlusCircleIcon
+                        className="mobileHeaderBtn h-7"
+                        onClick={() => setOpen(true)}
+                    />
+                    <ChatIcon className="mobileHeaderBtn h-7" />
+                    <HomeIcon
+                        className="navBtn"
+                        onClick={() => router.push("/")}
+                    />
+                    {session?.user ? (
+                        <>
+                            <div className="relative navBtn group">
+                                <PaperAirplaneIcon className="navBtn group-hover:rotate-45" />
+                                <div className="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white">
+                                    69
+                                </div>
+                            </div>
+                            <PlusCircleIcon
+                                className="navBtn"
+                                onClick={() => setOpen(true)}
+                            />
+                            <UserGroupIcon className="navBtn" />
+                            <HeartIcon className="navBtn" />
+                            <img
+                                src={session?.user?.image}
+                                alt="user-avatar"
+                                className="h-10 w-10 rounded-full cursor-pointer hidden md:inline-flex"
+                            />
+							<button
+								className="md:hidden text-blue-400 text-sm font-semibold"
+								onClick={signOut}
+							>
+								Sign Out
+							</button>
+                        </>
+                    ) : (
+                        <button
+							onClick={signIn}
+							className="text-blue-400 text-sm font-semibold"
+						>
+							Sign In
+						</button>
+                    )}
                 </div>
             </div>
-        </div>
-    )
-}
+        </header>
+    );
+};
 
-export default Header
+export default Header;

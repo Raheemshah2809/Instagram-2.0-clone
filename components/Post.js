@@ -28,6 +28,7 @@ function Post({ id, username, userImg, img, caption }) {
     const [hasLiked, setHasLiked] = useState(false);
     
     
+    
     useEffect (
         () =>
         onSnapshot(
