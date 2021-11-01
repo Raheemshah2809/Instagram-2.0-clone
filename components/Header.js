@@ -83,6 +83,7 @@ const Header = () => {
 							>
 								Sign Out
 							</button>
+                                        
                         </>
                     ) : (
                         <button
@@ -91,6 +92,7 @@ const Header = () => {
 						>
 							Sign In
 						</button>
+                        
                     )}
                 </div>
             </div>
