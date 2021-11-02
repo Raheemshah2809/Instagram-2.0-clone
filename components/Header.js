@@ -49,15 +49,15 @@ const Header = () => {
                         />
                     </div>
                 </div>
-                <div className="flex items-center justify-end space-x-4">
+                    {session?.user ? (
+                        <>
+                < div className="flex items-center justify-end space-x-4">
                     <PlusCircleIcon
                         className="mobileHeaderBtn h-7 hidden-lg"
                         onClick={() => setOpen(true)}
-                    />
-                    {session?.user ? (
-                        <>
-                            <div className="relative navBtn group">
+                                        />
                                 <PaperAirplaneIcon className="navBtn group-hover:rotate-45" />
+                            <div className="relative navBtn group">
                                 <div className="absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white">
                                     69
                                 </div>
@@ -65,7 +65,7 @@ const Header = () => {
                             <PlusCircleIcon
                                 className="navBtn"
                                 onClick={() => setOpen(true)}
-                            />
+                                />
                             <UserGroupIcon className="navBtn" />
                             <HeartIcon className="navBtn" />
                             <img
@@ -79,7 +79,7 @@ const Header = () => {
 							>
 								Sign Out
 							</button>
-                                        
+                            </div>
                         </>
                     ) : (
                         <button
@@ -90,7 +90,6 @@ const Header = () => {
 						</button>
                         
                     )}
-                </div>
             </div>
         </header>
     );
