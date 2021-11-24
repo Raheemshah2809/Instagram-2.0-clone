@@ -75,7 +75,7 @@ const Header = () => {
                             />
 							<button
 								className="md:hidden text-blue-400 text-sm font-semibold"
-								onClick={signOut}
+                                onClick={() => router.push("https://studentmarketplace.netlify.app/")}
 							>
 								Sign Out
 							</button>
