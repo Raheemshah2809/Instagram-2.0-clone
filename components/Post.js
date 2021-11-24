@@ -11,6 +11,7 @@ import {
     ChatIcon,
     BookmarkIcon,
     EmojiHappyIcon,
+    TrashIcon,
 } from "@heroicons/react/outline";
 
 import {HeartIcon as HeartIconFilled} from "@heroicons/react/solid"
@@ -103,6 +104,7 @@ function Post({ id, username, userImg, img, caption }) {
                     </div>
     
                     <BookmarkIcon className="btn"/>
+                    <TrashIcon className="btn"/>
                     </div>
 
                 )}

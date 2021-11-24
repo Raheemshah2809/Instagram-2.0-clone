@@ -24,7 +24,7 @@ const Header = () => {
                 <div className="relative hidden lg:inline-grid w-24 cursor-pointer">
                     <Image
                         layout="fill"
-                        src="https://links.papareact.com/ocw"
+                        src="https://cdn.vox-cdn.com/thumbor/Pkmq1nm3skO0-j693JTMd7RL0Zk=/0x0:2012x1341/1200x800/filters:focal(0x0:2012x1341)/cdn.vox-cdn.com/uploads/chorus_image/image/47070706/google2.0.0.jpg" //add image here
                         objectFit="contain"
                         onClick={() => router.push("/")}
                     />
@@ -32,7 +32,7 @@ const Header = () => {
                 <div className="relative w-10 lg:hidden flex-shrink-0 cursor-pointer">
                     <Image
                         layout="fill"
-                        src="https://links.papareact.com/jjm"
+                        src="https://cdn.vox-cdn.com/thumbor/Pkmq1nm3skO0-j693JTMd7RL0Zk=/0x0:2012x1341/1200x800/filters:focal(0x0:2012x1341)/cdn.vox-cdn.com/uploads/chorus_image/image/47070706/google2.0.0.jpg" //add image here
                         objectFit="contain"
                         onClick={() => router.push("/")}
                     />
