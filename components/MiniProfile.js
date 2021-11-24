@@ -15,7 +15,7 @@ function MiniProfile() {
 
 <button onClick={() => {
     signOut;
-    router.push("https://raheemshah2809.github.io/The-Student-Marketplace/index.html");
+    router.push("https://studentmarketplace.netlify.app/");
     
     }} className="text-blue-400 text-sm font-semibold">Sign Out</button>
 
